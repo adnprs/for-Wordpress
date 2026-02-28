@@ -1,13 +1,13 @@
 @extends('dashboard.layout')
 
-@section('title', 'SEO Keyword Generator')
-@section('header', 'SEO Keyword Generator')
+@section('title', 'Keyword Brief Builder')
+@section('header', 'Keyword Brief Builder')
 
 @section('content')
     <section class="max-w-3xl">
         <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-slate-900">Generate SEO Keyword Brief</h3>
-            <p class="mt-1 text-sm text-slate-500">Fill the form and generate structured SEO content inputs.</p>
+            <h3 class="text-lg font-semibold text-slate-900">Generate Keyword Brief</h3>
+            <p class="mt-1 text-sm text-slate-500">Fill the form and generate structured content inputs.</p>
 
             <form class="mt-6 space-y-5" method="POST" action="#">
                 @csrf
@@ -55,7 +55,7 @@
                     type="submit"
                     class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700"
                 >
-                    Generate SEO Draft
+                    Generate Draft
                 </button>
             </form>
         </div>

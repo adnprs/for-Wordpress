@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['admin', 'editor', 'operator'])->default('operator')->after('password');
-            $table->boolean('status')->default(true)->after('role');
+            // Role ko string rakhte hain taaki koi bhi admin type aa sake
+            $table->string('role')->default('operator')->after('password');
+            
+            // Status ko boolean se badal kar string kar diya hai taaki 'active'/'inactive' chal sake
+            $table->string('status')->default('active')->after('role');
         });
     }
 

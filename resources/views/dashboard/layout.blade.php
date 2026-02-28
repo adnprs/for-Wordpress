@@ -3,21 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'CACC Dashboard')</title>
-
+    <title>@yield('title', 'Workspace Dashboard')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
 </head>
 <body class="bg-slate-100 text-slate-900 antialiased">
     <div class="min-h-screen lg:flex">
         <aside class="w-full border-b border-slate-200 bg-white lg:min-h-screen lg:w-72 lg:border-b-0 lg:border-r">
             <div class="border-b border-slate-200 px-6 py-5">
-                <h1 class="text-xl font-bold tracking-tight">CACC Console</h1>
-                <p class="mt-1 text-sm text-slate-500">Content automation control panel</p>
+                <h1 class="text-xl font-bold tracking-tight">Workspace Console</h1>
+                <p class="mt-1 text-sm text-slate-500">Team publishing control panel</p>
             </div>
 
             @php
                 $navItems = [
-                    ['label' => 'SEO Generator', 'route' => 'dashboard.seo-generator', 'key' => 'seo-generator'],
+                    ['label' => 'Keyword Briefs', 'route' => 'dashboard.seo-generator', 'key' => 'seo-generator'],
                     ['label' => 'PDF Upload', 'route' => 'dashboard.pdf-upload', 'key' => 'pdf-upload'],
                     ['label' => 'JobShorts Firebase', 'route' => 'dashboard.jobshorts-firebase', 'key' => 'jobshorts-firebase'],
                     ['label' => 'App Settings', 'route' => 'dashboard.app-settings', 'key' => 'app-settings'],

@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('apps', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', ['wordpress', 'firebase']);
-            $table->string('api_key_ref')->nullable();
-            $table->boolean('status')->default(true);
+            $table->string('type'); // Enum hataya taaki 'custom' bhi aa sake
+            $table->string('ai_key')->nullable(); // Name change kiya taaki Model se match kare
+            $table->string('status')->default('active'); // Boolean hataya taaki 'active' text aa sake
+            $table->timestamps(); // <--- YE MISSING THA (Isse error hat jayega)
         });
     }
 

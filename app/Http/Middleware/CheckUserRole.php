@@ -29,11 +29,19 @@ class CheckUserRole
 
         $userRole = $user->role;
 
-        if ($userRole === 'admin') {
+        if ($requirements === []) {
             return $next($request);
         }
 
-        if ($requirements === []) {
+        if ($userRole === 'admin') {
+            $requiresAdmin = collect($requirements)
+                ->map(fn (string $requirement) => strtolower(trim($requirement)))
+                ->contains('admin');
+
+            if ($requiresAdmin && $request->session()->get('active_mode') !== 'admin') {
+                return redirect()->route('role.choose');
+            }
+
             return $next($request);
         }
 

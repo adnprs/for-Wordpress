@@ -1,39 +1,32 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class App extends Model
-{
-    use HasFactory;
+class App extends Model {
+    public const TYPE_WORDPRESS = 'wordpress';
+    public const TYPE_ANDROID = 'android';
 
-    public $timestamps = false;
+    protected $fillable = ['name', 'type', 'status', 'ai_key', 'wp_url', 'wp_username', 'wp_password'];
 
-    protected $fillable = [
-        'name',
-        'type',
-        'api_key_ref',
-        'status',
-    ];
-
-    protected function casts(): array
+    public function scopeActive($query)
     {
-        return [
-            'status' => 'boolean',
-        ];
+        return $query->where('status', 'active');
     }
 
-    public function connection(): HasOne
+    public function getModuleBadgeAttribute(): string
     {
-        return $this->hasOne(AppConnection::class);
+        return $this->type === self::TYPE_ANDROID ? 'Android App' : 'WordPress Site';
     }
 
-    public function generatedContents(): HasMany
+    public function categoryPrompts(): HasMany
     {
-        return $this->hasMany(GeneratedContent::class);
+        return $this->hasMany(CategoryPrompt::class);
+    }
+
+    public function postHistories(): HasMany
+    {
+        return $this->hasMany(PostHistory::class);
     }
 }

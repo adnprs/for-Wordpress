@@ -46,12 +46,17 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'status' => 'boolean',
+            'status' => 'string',
         ];
     }
 
     public function generatedContents(): HasMany
     {
         return $this->hasMany(GeneratedContent::class);
+    }
+
+    public function postHistories(): HasMany
+    {
+        return $this->hasMany(PostHistory::class);
     }
 }
