@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryPromptRequest;
+use App\Http\Requests\UpdateCategoryPromptRequest;
 use App\Models\App;
 use App\Models\CategoryPrompt;
 use App\Models\User;
@@ -94,28 +96,16 @@ class AdminController extends Controller
         return view('admin.prompts.index', compact('apps', 'prompts'));
     }
 
-    public function promptsStore(Request $request): RedirectResponse
+    public function promptsStore(StoreCategoryPromptRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'app_id' => ['required', 'exists:apps,id'],
-            'category_name' => ['required', 'string', 'max:255'],
-            'prompt_template' => ['required', 'string'],
-        ]);
-
-        CategoryPrompt::create($validated);
+        CategoryPrompt::create($request->validated());
 
         return back()->with('status', 'Category prompt saved successfully.');
     }
 
-    public function promptsUpdate(Request $request, CategoryPrompt $prompt): RedirectResponse
+    public function promptsUpdate(UpdateCategoryPromptRequest $request, CategoryPrompt $prompt): RedirectResponse
     {
-        $validated = $request->validate([
-            'app_id' => ['required', 'exists:apps,id'],
-            'category_name' => ['required', 'string', 'max:255'],
-            'prompt_template' => ['required', 'string'],
-        ]);
-
-        $prompt->update($validated);
+        $prompt->update($request->validated());
 
         return back()->with('success', 'Category prompt updated successfully.');
     }
